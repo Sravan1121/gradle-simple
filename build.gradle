@@ -16,14 +16,29 @@ dependencies {
 }
 
 java {
-	withSourcesJar()
-	withJavadocJar()
+    withSourcesJar()
+    withJavadocJar()
 }
+
+tasks.withType(Javadoc) {
+    enabled = false  // Disable Javadoc generation
+}
+
+// If you later decide to enable Javadoc generation, use this configuration instead
+/*
+tasks.withType(Javadoc) {
+    options {
+        encoding = 'UTF-8'
+        charSet = 'UTF-8'
+        links "https://docs.oracle.com/javase/8/docs/api/"
+    }
+}
+*/
 
 publishing {
     publications {
         maven(MavenPublication) {
-		from components.java
+                from components.java
         }
     }
 }
